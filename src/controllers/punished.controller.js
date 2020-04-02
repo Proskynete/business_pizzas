@@ -97,7 +97,23 @@ const insertNewPunished = (req, res) => {
 	});
 };
 
+const removeAll = (_, res) => {
+	Punished.remove({}, err => {
+		if (err)
+			return res.status(500).json({
+				status: 500,
+				message: 'Tuvimos un error, inténtalo de nuevo'
+			});
+
+		return res.status(200).json({
+			status: 200,
+			message: 'Se hacaba de hacer un perdonazo.'
+		});
+	});
+};
+
 module.exports = {
 	getAllPunished,
-	insertNewPunished
+	insertNewPunished,
+	removeAll
 };
